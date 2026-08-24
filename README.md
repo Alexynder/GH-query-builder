@@ -82,6 +82,7 @@ the query's items, clear the pipeline, and return a result.
 | `execute()` | Runs the pipeline and returns the result. Use this after `groupBy`/`mapBy`, since their result is a map rather than a list. |
 | `toList()` | Alias for `execute()`. Prefer this when the pipeline ends with a list-producing operation. |
 | `first()` | Returns the first item, or `null` if the result is empty. |
+| `last()` | Returns the last item, or null if the result is empty. |
 | `any()` | Returns `true` if the result has at least one item. |
 | `count()` | Returns the number of items in the result. |
 | `sum(selector = null)` | Sums `selector(item)` (or `item` itself if `null`) across the result. |

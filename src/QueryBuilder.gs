@@ -362,6 +362,12 @@ Query.first = function()
     return list[0]
 end function
 
+Query.last = function()
+    list = self.execute()
+    if list.len == 0 then return null
+    return list[-1]
+end function
+
 Query.any = function()
     return self.execute().len > 0
 end function
