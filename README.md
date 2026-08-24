@@ -65,10 +65,10 @@ Nothing runs until a terminal method is called.
 | `sortBy(selector = null, comparator = null, descending = false)` | Sorts using an optional custom `comparator(a, b)` function reference; falls back to the built-in sort when `comparator` is `null`. |
 | `groupBy(selector)` | Groups items into a map of `key -> list of items`. |
 | `mapBy(selector)` | Builds a map of `key -> item` (last item wins on duplicate keys). |
-| `concat(list)` |  Concatenates the current list with another list. |
-| `union(list)` | Creates union of two lists, concatenating lists and leaving only unique items |
-| `intersect(list)` | Creates the intersection of the current list and the provided list |
-| `except(list)` | Removes from collection items that are present in provided list |
+| `concat(list)` | Concatenates the current list with another list. |
+| `union(list)` | Concatenates the current list with `list`, then removes duplicates (`distinct`) from the combined result. |
+| `intersect(list)` | Keeps items from the current list that are present in `list`. |
+| `except(list)` | Removes items from the current list that are present in `list`. |
 | `distinct(selector = null)` | Removes duplicates, comparing by `selector` (or by item value if `null`). |
 | `reverse()` | Reverses the current item order. |
 
@@ -82,10 +82,10 @@ the query's items, clear the pipeline, and return a result.
 | `execute()` | Runs the pipeline and returns the result. Use this after `groupBy`/`mapBy`, since their result is a map rather than a list. |
 | `toList()` | Alias for `execute()`. Prefer this when the pipeline ends with a list-producing operation. |
 | `first()` | Returns the first item, or `null` if the result is empty. |
-| `last()` | Returns the last item, or null if the result is empty. |
+| `last()` | Returns the last item, or `null` if the result is empty. |
 | `any()` | Returns `true` if the result has at least one item. |
 | `count()` | Returns the number of items in the result. |
-| 'contains(value)' | Returns true if the specified value is present in the result of the query. |
+| `contains(value)` | Returns `true` if `value` is present in the query result; otherwise returns `false`. |
 | `sum(selector = null)` | Sums `selector(item)` (or `item` itself if `null`) across the result. |
 | `min(selector = null)` | Returns the minimum value, or `null` if the result is empty. |
 | `max(selector = null)` | Returns the maximum value, or `null` if the result is empty. |
