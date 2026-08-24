@@ -68,6 +68,7 @@ Nothing runs until a terminal method is called.
 | `concat(list)` |  Concatenates the current list with another list. |
 | `union(list)` | Creates union of two lists, concatenating lists and leaving only unique items |
 | `intersect(list)` | Creates the intersection of the current list and the provided list |
+| `except(list)` | Removes from collection items that are present in provided list |
 | `distinct(selector = null)` | Removes duplicates, comparing by `selector` (or by item value if `null`). |
 | `reverse()` | Reverses the current item order. |
 

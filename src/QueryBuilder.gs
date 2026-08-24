@@ -112,6 +112,12 @@ Query.intersect = function(list)
     return self
 end function
 
+Query.except = function(list)
+    op = {"type": "where_not_in", "selector": null, "values": list}
+    self.operations.push(op)
+    return self
+end function
+
 Query.distinct = function(selector = null)
     op = {"type": "distinct"}
     if @selector != null then op.selector = @selector else op.selector = null
