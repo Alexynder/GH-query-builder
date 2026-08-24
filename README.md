@@ -57,6 +57,7 @@ Nothing runs until a terminal method is called.
 | `whereGreaterThan(selector, value)` | Keeps items where `selector(item) > value`. |
 | `whereLessThan(selector, value)` | Keeps items where `selector(item) < value`. |
 | `select(selector)` | Projects each item through `selector`. |
+| `selectMany(selector)` | Projects each item through `selector`, where each projection must be a list, then flattens all projected lists into a single result list. |
 | `take(count)` | Keeps only the first `count` items. |
 | `skip(count)` | Skips the first `count` items. |
 | `sort(selector = null)` | Sorts ascending by `selector` (or by item value if `null`). |

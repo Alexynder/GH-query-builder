@@ -51,6 +51,11 @@ Query.select = function(selector)
     return self
 end function
 
+Query.selectMany = function(selector)
+    self.operations.push({"type": "selectMany", "selector": @selector})
+    return self
+end function
+
 Query.take = function(count)
     self.operations.push({"type": "take", "count": count})
     return self
@@ -161,6 +166,21 @@ Query.applySelect = function(list, selector)
     return result
 end function
 
+Query.applySelectMany = function(list, selector)
+    result = []
+    for item in list
+        sublist = self.handleSelector(item, @selector)
+        if typeof(sublist) != "list" then
+            print("<color=#ff0000>Type error, expected list but got " + typeof(sublist) + " using selector " + @selector + " for item " + item + "</color>")
+            exit(1)
+        end if
+        for subitem in sublist
+            result.push(subitem)
+        end for
+    end for
+    return result
+    end function
+
 // built-in list.sort
 Query.applyOrderBy = function(list, keySelector, descending)
     tuples = []
@@ -266,6 +286,8 @@ Query.applyOperation = function(list, op)
         return self.applyWhereCompare(list, @op.selector, @op.value, false)
     else if op.type == "select" then
         return self.applySelect(list, @op.selector)
+    else if op.type == "selectMany" then
+        return self.applySelectMany(list, @op.selector)
     else if op.type == "sortBy" then
         return self.applySortBy(list, @op.selector, @op.comparator, op.descending)
     else if op.type == "groupBy" then
