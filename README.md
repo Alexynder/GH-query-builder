@@ -66,6 +66,7 @@ Nothing runs until a terminal method is called.
 | `groupBy(selector)` | Groups items into a map of `key -> list of items`. |
 | `mapBy(selector)` | Builds a map of `key -> item` (last item wins on duplicate keys). |
 | `concat(list)` |  Concatenates the current list with another list. |
+| `union(list)` | Creates union of two lists, concatenating lists and leaving only unique items |
 | `distinct(selector = null)` | Removes duplicates, comparing by `selector` (or by item value if `null`). |
 | `reverse()` | Reverses the current item order. |
 

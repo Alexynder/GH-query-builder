@@ -99,6 +99,13 @@ Query.concat = function(list)
     return self
 end function
 
+Query.union = function(list)
+    op = {"type": "concat", "list": list}
+    self.operations.push(op)
+    self.operations.push({"type": "distinct", "selector": null})
+    return self
+end function
+
 Query.distinct = function(selector = null)
     op = {"type": "distinct"}
     if @selector != null then op.selector = @selector else op.selector = null
@@ -399,3 +406,9 @@ QueryBuilder = {}
 QueryBuilder.from = function(list)
     return Query.ctor(list)
 end function
+
+lst1 = [1, 2, 3]
+lst2 = [2,3,4,5,6]
+
+unionResult = QueryBuilder.from(lst1).union(lst2).toList()
+print(unionResult)  // Output: [1, 2, 3, 4, 5, 6]
