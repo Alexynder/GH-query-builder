@@ -266,7 +266,6 @@ Query.applyMapBy = function(list, selector)
     result = {}
     for item in list
         key = self.handleSelector(item, @selector)
-        if not result.hasIndex(key) then result[key] = item
         result[key] = item
     end for
     return result
