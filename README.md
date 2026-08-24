@@ -67,6 +67,7 @@ Nothing runs until a terminal method is called.
 | `mapBy(selector)` | Builds a map of `key -> item` (last item wins on duplicate keys). |
 | `concat(list)` |  Concatenates the current list with another list. |
 | `union(list)` | Creates union of two lists, concatenating lists and leaving only unique items |
+| `intersect(list)` | Creates the intersection of the current list and the provided list |
 | `distinct(selector = null)` | Removes duplicates, comparing by `selector` (or by item value if `null`). |
 | `reverse()` | Reverses the current item order. |
 
