@@ -93,6 +93,12 @@ Query.mapBy = function(selector)
     return self
 end function
 
+Query.concat = function(list)
+    op = {"type": "concat", "list": list}
+    self.operations.push(op)
+    return self
+end function
+
 Query.distinct = function(selector = null)
     op = {"type": "distinct"}
     if @selector != null then op.selector = @selector else op.selector = null
@@ -247,6 +253,14 @@ Query.applyMapBy = function(list, selector)
     return result
 end function
 
+Query.applyConcat = function(list, otherList)
+    result = list[:]
+    for item in otherList
+        result.push(item)
+    end for
+    return result
+end function
+
 Query.applyDistinct = function(list, selector)
     result = []
     seenKeys = []
@@ -296,6 +310,8 @@ Query.applyOperation = function(list, op)
         return self.applyMapBy(list, @op.selector)
     else if op.type == "distinct" then
         return self.applyDistinct(list, @op.selector)
+    else if op.type == "concat" then
+        return self.applyConcat(list, op.list)
     else if op.type == "reverse" then
         return self.applyReverse(list)
     else if op.type == "take" then
