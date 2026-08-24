@@ -85,6 +85,7 @@ the query's items, clear the pipeline, and return a result.
 | `last()` | Returns the last item, or null if the result is empty. |
 | `any()` | Returns `true` if the result has at least one item. |
 | `count()` | Returns the number of items in the result. |
+| 'contains(value)' | Returns true if the specified value is present in the result of the query. |
 | `sum(selector = null)` | Sums `selector(item)` (or `item` itself if `null`) across the result. |
 | `min(selector = null)` | Returns the minimum value, or `null` if the result is empty. |
 | `max(selector = null)` | Returns the maximum value, or `null` if the result is empty. |

@@ -372,6 +372,14 @@ Query.any = function()
     return self.execute().len > 0
 end function
 
+Query.contains = function(value)
+    list = self.execute()
+    for item in list
+        if item == value then return true
+    end for
+    return false
+end function
+
 Query.count = function()
     return self.execute().len
 end function
