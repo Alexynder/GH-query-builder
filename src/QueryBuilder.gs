@@ -16,6 +16,11 @@ Query.where = function(predicate)
     return self
 end function
 
+Query.whereNot = function(predicate)
+    self.operations.push({"type": "where_not", "predicate": @predicate})
+    return self
+end function
+
 Query.whereEquals = function(selector, value)
     self.operations.push({"type": "where_eq", "selector": @selector, "value": value})
     return self
@@ -143,6 +148,14 @@ Query.applyWhere = function(list, predicate)
     result = []
     for item in list
         if predicate(item) then result.push(item)
+    end for
+    return result
+end function
+
+Query.applyWhereNot = function(list, predicate)
+    result = []
+    for item in list
+        if not predicate(item) then result.push(item)
     end for
     return result
 end function
@@ -304,6 +317,8 @@ end function
 Query.applyOperation = function(list, op)
     if op.type == "where" then
         return self.applyWhere(list, @op.predicate)
+    else if op.type == "where_not" then
+        return self.applyWhereNot(list, @op.predicate)
     else if op.type == "where_eq" then
         return self.applyWhereEquals(list, @op.selector, @op.value, true)
     else if op.type == "where_neq" then
